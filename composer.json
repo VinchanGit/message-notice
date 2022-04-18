@@ -1,0 +1,38 @@
+{
+    "name": "vinchan/message-notice",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "MessageNotice\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MessageNoticeTest\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Vinchan",
+            "email": "ademo@vip.qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.3",
+        "hyperf/guzzle": "~2.2.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "phpunit/phpunit": "*",
+        "swoole/ide-helper": "^4.5"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "hyperf": {
+            "config": "MessageNotice\\ConfigProvider"
+        }
+    }
+}
