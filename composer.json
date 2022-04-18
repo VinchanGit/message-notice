@@ -20,12 +20,12 @@
     ],
     "require": {
         "php": ">=7.3",
-        "hyperf/guzzle": "~2.2.0"
+        "hyperf/guzzle": "1.*"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.0",
         "phpunit/phpunit": "*",
-        "swoole/ide-helper": "^4.5"
+        "hyperf/ide-helper": "v2.2.5"
     },
     "config": {
         "sort-packages": true
