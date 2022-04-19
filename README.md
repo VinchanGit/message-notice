@@ -10,7 +10,7 @@
 ## 安装
 
 ```bash
-$ composer require vinchan/message-notify -vvv
+$ composer require vinchan/message-notice -vvv
 ```
 
 ## 配置文件
