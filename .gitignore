@@ -4,6 +4,7 @@
 *.idea
 *.svn
 *.git
+*.cache
 composer.lock
 /vendor
 /tests
