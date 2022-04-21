@@ -30,7 +30,7 @@ class Wechat extends DriverManager implements DriverInterface
             'msgtype' => 'text',
             'text' => [
                 'content' => $this->getContent(),
-                'mentioned_mobile_list' =>  $this->getAt(),
+                'mentioned_mobile_list' => $this->getAt(),
             ],
         ];
 
@@ -47,7 +47,7 @@ class Wechat extends DriverManager implements DriverInterface
         $result = [];
         $at = $this->manager->getAt();
         if ((is_string($at) && $at == 'all') || (is_array($at) && in_array('all', $at))) {
-            return ["@all"];
+            return ['@all'];
         }
 
         if (is_array($at)) {

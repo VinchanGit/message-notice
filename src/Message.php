@@ -13,9 +13,9 @@ class Message
 {
     public Manager $manager;
 
-    protected ContainerInterface $container;
-
     public $channel;
+
+    protected ContainerInterface $container;
 
     public function __construct(ContainerInterface $container, Manager $manager)
     {
