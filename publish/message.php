@@ -33,7 +33,7 @@ return [
         ],
 
         // 企业微信群机器人
-        'wechat' => [
+        \MessageNotice\driver\Wechat::class => [
             'driver' => 'wechat',
             'token' => env('NOTIFY_WECHAT_TOKEN'),
             'pipeline' => '',

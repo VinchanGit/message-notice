@@ -4,24 +4,18 @@ declare(strict_types=1);
 
 namespace MessageNotice;
 
+use MessageNotice\driver\DriverInterface;
+use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 class Message
 {
-    /**
-     * @var Manager
-     */
-    protected $manager;
+    public Manager $manager;
 
-    /**
-     * @var ContainerInterface
-     */
-    protected $container;
+    protected ContainerInterface $container;
 
-    /**
-     * @var
-     */
-    protected $channel;
+    public $channel;
 
     public function __construct(ContainerInterface $container, Manager $manager)
     {
@@ -32,25 +26,32 @@ class Message
     public function send()
     {
         try {
-            $this->beforSend();
-
+            $this->beforeSend();
             $this->do();
         } catch (\Exception $e) {
             echo $e->getMessage();
         }
     }
 
-    public function beforSend()
+    /**
+     * 前置操作.
+     */
+    public function beforeSend()
     {
         foreach ($this->channel as &$channel) {
+            /* @var DriverInterface $channel */
             $channel->handler($this->manager);
         }
     }
 
+    /**
+     * 执行发送
+     */
     public function do()
     {
         foreach ($this->channel as $channel) {
             try {
+                /** @var DriverInterface $channel */
                 echo $channel->send();
             } catch (\Exception $exception) {
                 echo $exception->getMessage();
@@ -60,7 +61,10 @@ class Message
 
     /**
      * 通道配置.
-     * @param mixed $channels
+     * @param $channels
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     * @return $this
      */
     public function channel($channels): Message
     {

@@ -11,19 +11,19 @@ use Hyperf\Guzzle\ClientFactory;
 
 class Request
 {
-    public $query = [];
+    public array $query = [];
 
-    public $param = [];
+    public array $param = [];
 
-    public $json = [];
+    public array $json = [];
 
-    public $header = [];
+    public array $header = [];
 
-    public $domain = '';
+    public string $domain = '';
 
-    public $route = '';
+    public string $route = '';
 
-    public $clientFactory;
+    public ClientFactory $clientFactory;
 
     public function __construct(ClientFactory $clientFactory)
     {
