@@ -23,12 +23,9 @@
         "hyperf/guzzle": "^1.1|^2.1|^3.0"
     },
     "require-dev": {
-        "hyperf/event": "*",
-        "hyperf/di": "v2.*",
-        "hyperf/config": "v2.2.*",
-        "hyperf/framework": "v2.2.*",
         "friendsofphp/php-cs-fixer": "^3.0",
-        "hyperf/ide-helper": "v2.2.5"
+        "phpunit/phpunit": "v9.5.*",
+        "hyperf/ide-helper": "v2.2.*"
     },
     "config": {
         "sort-packages": true
