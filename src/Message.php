@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace MessageNotice;
 
-use MessageNotice\driver\DriverInterface;
+use MessageNotice\Driver\DriverInterface;
+use MessageNotice\Exception\MessageException;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
@@ -28,8 +29,8 @@ class Message
         try {
             $this->beforeSend();
             $this->do();
-        } catch (\Exception $e) {
-            echo $e->getMessage();
+        } catch (\Throwable $e) {
+            throw new MessageException($e->getMessage(), $e->getCode());
         }
     }
 
@@ -51,10 +52,10 @@ class Message
     {
         foreach ($this->channel as $channel) {
             try {
-                /** @var DriverInterface $channel */
-                echo $channel->send();
-            } catch (\Exception $exception) {
-                echo $exception->getMessage();
+                /* @var DriverInterface $channel */
+                $channel->send();
+            } catch (\Throwable $e) {
+                throw new MessageException($e->getMessage(), $e->getCode());
             }
         }
     }

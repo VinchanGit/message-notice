@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MessageNotice\driver;
+namespace MessageNotice\Driver;
 
 use MessageNotice\Manager;
 use MessageNotice\Request;

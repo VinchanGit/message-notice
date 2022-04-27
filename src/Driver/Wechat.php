@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace MessageNotice\driver;
+namespace MessageNotice\Driver;
 
 use Hyperf\Contract\ConfigInterface;
 use MessageNotice\Manager;
 use MessageNotice\Request;
 use Psr\Container\ContainerInterface;
 
-class DingTalk extends DriverManager implements DriverInterface
+class Wechat extends DriverManager implements DriverInterface
 {
-    protected $url = 'https://oapi.dingtalk.com/robot/send';
+    protected $url = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=';
 
     public function __construct(ContainerInterface $container)
     {
@@ -23,11 +23,15 @@ class DingTalk extends DriverManager implements DriverInterface
         $this->manager = $manager;
         $request = make(Request::class);
 
+        $timestamp = time();
         $request->domain = $this->getDomain();
         $request->json = [
+            'timestamp' => $timestamp,
             'msgtype' => 'text',
-            'text' => ['content' => $manager->getContent()],
-            'at' => $this->getAt(),
+            'text' => [
+                'content' => $this->getContent(),
+                'mentioned_mobile_list' => $this->getAt(),
+            ],
         ];
 
         $this->request = $request;
@@ -38,39 +42,31 @@ class DingTalk extends DriverManager implements DriverInterface
         return $this->request->post();
     }
 
-    /**
-     * 生成请求地址
-     */
-    private function getDomain(): string
-    {
-        $time = time() * 1000;
-        $token = $this->getConfig('token');
-        $secret = $this->getConfig('secret');
-        $secret = hash_hmac('sha256', $time . "\n" . $secret, $secret, true);
-        $sign = urlencode(base64_encode($secret));
-        return "{$this->url}?access_token={$token}&timestamp={$time}&sign={$sign}";
-    }
-
-    /**
-     * 生成@.
-     * @return array|array[]|bool[]
-     */
     private function getAt(): array
     {
         $result = [];
         $at = $this->manager->getAt();
         if ((is_string($at) && $at == 'all') || (is_array($at) && in_array('all', $at))) {
-            return [
-                'isAtAll' => true,
-            ];
+            return ['@all'];
         }
 
         if (is_array($at)) {
-            $result = [
-                'atMobiles' => $at,
-            ];
+            foreach ($at as $item) {
+                $result[] = $item;
+            }
         }
 
         return $result;
+    }
+
+    private function getContent(): string
+    {
+        return $this->manager->getContent();
+    }
+
+    private function getDomain(): string
+    {
+        $token = $this->getConfig('token');
+        return "{$this->url}{$token}";
     }
 }

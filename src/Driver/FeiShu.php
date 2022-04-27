@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MessageNotice\driver;
+namespace MessageNotice\Driver;
 
 use Hyperf\Contract\ConfigInterface;
 use MessageNotice\Manager;

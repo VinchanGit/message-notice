@@ -6,7 +6,7 @@ return [
     'default' => env('NOTIFY_DEFAULT_CHANNEL', 'mail'),
     'channels' => [
         // 钉钉群机器人
-        \MessageNotice\driver\DingTalk::class => [
+        \MessageNotice\Driver\DingTalk::class => [
             'driver' => 'dingTalk',
             'token' => env('NOTIFY_DINGTALK_TOKEN', ''),
             'secret' => env('NOTIFY_DINGTALK_SECRET', ''),
@@ -15,7 +15,7 @@ return [
         ],
 
         // 飞书群机器人
-        \MessageNotice\driver\FeiShu::class => [
+        \MessageNotice\Driver\FeiShu::class => [
             'driver' => 'feiShu',
             'token' => env('NOTIFY_FEISHU_TOKEN', ''),
             'secret' => env('NOTIFY_FEISHU_SECRET', ''),
@@ -33,7 +33,7 @@ return [
         ],
 
         // 企业微信群机器人
-        \MessageNotice\driver\Wechat::class => [
+        \MessageNotice\Driver\Wechat::class => [
             'driver' => 'wechat',
             'token' => env('NOTIFY_WECHAT_TOKEN'),
             'pipeline' => '',
