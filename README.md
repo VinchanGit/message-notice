@@ -39,7 +39,7 @@ NOTIFY_FEISHU_SECRET=secret
 
 ```php
 $message = make(\MessageNotice\Message::class);
-$message->at(['13000000000'])->channel([FeiShu::class,DingTalk::class])->content('发送的内容')->send();
+$message->at(['13000000000'])->channel([FeiShu::class,DingTalk::class])->pipeline('info')->content('发送的内容')->send();
 ```
 
 ## 扩展自定义通道
