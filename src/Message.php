@@ -77,6 +77,18 @@ class Message
     }
 
     /**
+     * 管道设置.
+     * @return Message
+     */
+    public function pipeline(string $pipeline = '')
+    {
+        if (! empty($pipeline)) {
+            $this->manager->setPipeline($pipeline);
+        }
+        return $this;
+    }
+
+    /**
      * 发送内容.
      */
     public function content(string $content): Message

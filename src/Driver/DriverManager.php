@@ -35,6 +35,10 @@ class DriverManager
 
     public function getConfig(string $key = '')
     {
+        if (isset($this->config['pipeline'][$this->manager->getPipeline()][$key])) {
+            return $this->config['pipeline'][$this->manager->getPipeline()][$key];
+        }
+
         if (empty($key)) {
             return $this->config;
         }

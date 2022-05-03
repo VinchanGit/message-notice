@@ -17,6 +17,11 @@ class Manager
      */
     public $content;
 
+    /**
+     * 发送管道.
+     */
+    private string $pipeline;
+
     public function setContent(string $content)
     {
         $this->content = $content;
@@ -35,5 +40,15 @@ class Manager
     public function getAt()
     {
         return $this->at;
+    }
+
+    public function setPipeline(string $pipeline)
+    {
+        $this->pipeline = $pipeline;
+    }
+
+    public function getPipeline(): string
+    {
+        return $this->pipeline;
     }
 }
