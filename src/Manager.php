@@ -14,12 +14,12 @@ class Manager
     /**
      * 发送的内容.
      */
-    public string $content;
+    public string $content = '';
 
     /**
      * 发送管道.
      */
-    public string $pipeline;
+    public string $pipeline = '';
 
     public function setContent(string $content)
     {
