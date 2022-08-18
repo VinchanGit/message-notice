@@ -1,5 +1,7 @@
 # message-notice
 
+## `温馨提示：该组件已迁移至：https://github.com/VinchanGit/message-notify 继续维护迭代`
+
 ## 功能
 
 * 监控发送应用异常
